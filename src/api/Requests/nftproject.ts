@@ -1,12 +1,10 @@
-import { AddNFTsInput } from '../../types/Models/NFT/AddNFTs/AddNFTsInput';
 import { saturnAPI } from '../api';
 
-export const addNFT = async (input: AddNFTsInput) => {
+export const addNFTProject = async () => {
     try {
-        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nft.add()}`;
+        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.add()}`;
         const response = await fetch(url, {
             method: 'POST',
-            body: JSON.stringify(input),
         });
         const data = await response.json();
         return data;

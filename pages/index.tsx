@@ -3,7 +3,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { saturnAPI } from '../src/api/api';
 import { addNFT } from '../src/api/Requests/nft';
+import { addNFTProject } from '../src/api/Requests/nftproject';
 import { Spinner } from '../src/components/Elements/Spinner';
+import { AddNFTsInput } from '../src/types/Models/NFT/AddNFTs/AddNFTsInput';
 
 const IndexPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -34,9 +36,29 @@ const IndexPage = () => {
 
 const mintNFT = async () => {
     try {
-        console.log('test');
-        const data = await addNFT();
-        console.log('data', data);
+        // 1) Create a new NFT Project
+        const nftProject = await addNFTProject();
+
+        // 2) Add an NFT to the new NFT Project
+        const addNFTInput: AddNFTsInput = {
+            nftProjectId: nftProject?.id,
+            count: 1,
+        };
+        const nft = await addNFT(addNFTInput);
+
+        // 3) Update the NFT with data
+
+        // 4) Mint the NFT
+        console.log('nftProject', nftProject);
+        console.log('nft', nft);
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+const buyMintNFT = async () => {
+    try {
+        console.log('Mega Muk');
     } catch (error) {
         console.error(error);
     }
