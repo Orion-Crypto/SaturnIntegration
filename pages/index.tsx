@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
+import { saturnAPI } from '../src/api/api';
+import { addNFT } from '../src/api/Requests/nft';
 import { Spinner } from '../src/components/Elements/Spinner';
 
 const IndexPage = () => {
@@ -33,6 +35,8 @@ const IndexPage = () => {
 const mintNFT = async () => {
     try {
         console.log('test');
+        const data = await addNFT();
+        console.log('data', data);
     } catch (error) {
         console.error(error);
     }
