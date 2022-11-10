@@ -30,6 +30,9 @@ module.exports = {
             dropShadow: {
                 'black-sharp': '0px 4px 16px rgba(0, 0, 0, 0.5)',
             },
+            width: {
+                104: '26rem',
+            },
         },
     },
     plugins: [],

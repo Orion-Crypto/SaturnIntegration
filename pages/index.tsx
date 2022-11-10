@@ -1,5 +1,41 @@
+import clsx from 'clsx';
+import Image from 'next/image';
+import { useState } from 'react';
+import { Spinner } from '../src/components/Elements/Spinner';
+
 const IndexPage = () => {
-    <div>Hello World!</div>
-}
+    const [isLoading, setIsLoading] = useState(false);
+
+    const mint = async () => {
+        setIsLoading(true);
+        await mintNFT();
+        setIsLoading(false);
+    };
+    return (
+        <div className="flex h-screen w-full items-center justify-center">
+            <div
+                onClick={mint}
+                className={clsx(
+                    'flex h-16 cursor-pointer select-none items-center justify-center gap-2 rounded-xl bg-blue-800 px-2 text-xl font-bold text-white drop-shadow-black-sharp',
+                    'hover:bg-blue-600',
+                    'active:bg-blue-500'
+                )}
+            >
+                <div className="">
+                    <Image src={'/images/Logo.png'} alt={'Saturn Logo'} width={48} height={48} />
+                </div>
+                <div className="flex w-104 items-center justify-center">{isLoading ? <Spinner /> : 'Create And Mint Test NFT With Saturn'}</div>
+            </div>
+        </div>
+    );
+};
+
+const mintNFT = async () => {
+    try {
+        console.log('test');
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 export default IndexPage;

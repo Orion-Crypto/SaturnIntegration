@@ -7,7 +7,11 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.14.5",
+    "clsx": "^1.2.1",
+    "eslint": "^8.27.0",
     "next": "latest",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

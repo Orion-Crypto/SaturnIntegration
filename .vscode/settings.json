@@ -1,0 +1,157 @@
+{
+    "[javascript]": {
+        "editor.tabSize": 4,
+        "editor.foldingStrategy": "indentation",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 4,
+        "editor.foldingStrategy": "indentation",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[cjs]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[sass]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[less]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[terraform]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.codeActionsOnSave": {
+            "source.formatAll.terraform": true
+        }
+    },
+    "[terraform-vars]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.codeActionsOnSave": {
+            "source.formatAll.terraform": true
+        }
+    },
+    "[yaml]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[csharp]": {
+        "editor.defaultFormatter": "csharpier.csharpier-vscode",
+        //"editor.defaultFormatter": "ms-dotnettools.csharp", // Omnisharp does not have line width
+        "editor.tabSize": 4
+    },
+    "css.validate": true,
+    "editor.accessibilitySupport": "off",
+    "editor.bracketPairColorization.enabled": false,
+    "editor.guides.bracketPairsHorizontal": false,
+    "editor.guides.bracketPairs": "active",
+    "editor.codeActionsOnSave": {
+        "source.sortImports": true,
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
+    "editor.cursorBlinking": "blink",
+    "editor.cursorStyle": "line",
+    "editor.find.autoFindInSelection": "multiline",
+    "editor.find.seedSearchStringFromSelection": "selection",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.fontWeight": "normal",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.hover.delay": 1000,
+    "editor.inlineSuggest.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.quickSuggestionsDelay": 6,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
+    "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        ".*rc": "json",
+        "*.svg": "xml",
+        ".nvmrc": "plaintext",
+        ".npmrc": "plaintext"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\n",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "html.format.extraLiners": "head, body, /html, section, nav, footer, header",
+    "javascript.inlayHints.enumMemberValues.enabled": true,
+    "javascript.suggest.completeFunctionCalls": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "js/ts.implicitProjectConfig.strictNullChecks": true,
+    "markdown.preview.fontSize": 14,
+    "npm-intellisense.packageSubfoldersIntellisense": true,
+    "npm-intellisense.scanDevDependencies": true,
+    "npm.runSilent": true,
+    "scss.validate": false,
+    "search.showLineNumbers": true,
+    "search.useReplacePreview": false,
+    "stylelint.snippet": ["css", "less", "postcss", "scss", "tsx"],
+    "stylelint.validate": ["css", "less", "postcss", "scss", "tsx"],
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 2,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.scrollback": 50000,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.inlayHints.enumMemberValues.enabled": true,
+    "typescript.locale": "en",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.tsserver.maxTsServerMemory": 8192,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.workspaceSymbols.scope": "currentProject",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.tree.indent": 24,
+    "explorer.confirmDelete": false,
+    "prettier.tabWidth": 4
+}
