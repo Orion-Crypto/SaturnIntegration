@@ -17,6 +17,7 @@ export const saturnAPI = new API({
         nft: {
             add: () => `/nft/add`,
             update: () => `/nft/update`,
+            delete: () => `/nft/delete`,
         },
         nftproject: {
             add: () => `/nftproject/add`,
