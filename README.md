@@ -46,8 +46,7 @@ This repository is split into 4 parts:
 
 To setup your own multisign minting engine. Copy the pattern for the above parts for whichever Saturn APIs you need.
 
-<<<<<<< HEAD
-If you need any help, feel free to reach out on Twitter, in our Discord Server, or on the Mercury Chat town square =D.
+If you need any help, feel free to reach out on [Twitter](https://twitter.com/SaturnNFTio), on [Discord](http://discord.gg/NvVNfQmPjp), or on the [Mercury Chat Town Square](https://mercurychat.io/) =D.
 
 <br />
 
@@ -62,6 +61,3 @@ import MercuryChat from '@mercury-chat/react-chat'
     <MercuryChat />
 </div>
 ```
-=======
-If you need any help, feel free to reach out on [Twitter](https://twitter.com/SaturnNFTio), on [Discord](http://discord.gg/NvVNfQmPjp), or on the [Mercury Chat Town Square](https://mercurychat.io/) =D.
->>>>>>> 5ebbc2020b041253160fb111924bd6776fc2da51
