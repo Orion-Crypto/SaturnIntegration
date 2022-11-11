@@ -19,7 +19,12 @@ git clone git@github.com:Orion-Crypto/SaturnIntegration.git
 npm i
 ```
 
-3. To start this repository, run:
+3. Get an API key from Saturn. By connecting and signing into https://saturnnft.io/. The site uses 1 - click wallet login, so no username or password required!
+![APIKey](https://user-images.githubusercontent.com/17760631/201388005-8c64ca27-8441-463a-9ca0-6ee19ed44d94.jpg)
+
+4. Create a .env file in the top level of this repo by copy and pasting the file /devops/environment/example.env and renaming it to .env. Paste your Saturn API Key into the SATURN_API_KEY field
+
+5. Finally, to start this repository, run:
 
 ```
 npm run dev
