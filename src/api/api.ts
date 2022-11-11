@@ -16,9 +16,12 @@ export const saturnAPI = new API({
     endpoints: {
         nft: {
             add: () => `/nft/add`,
+            update: () => `/nft/update`,
         },
         nftproject: {
             add: () => `/nftproject/add`,
+            createSingleOrBulkMintTransaction: () => `/nftproject/createSingleOrBulkMintTransaction`,
+            submitSingleOrBulkMintTransaction: () => `/nftproject/submitSingleOrBulkMintTransaction`,
         },
     },
 });

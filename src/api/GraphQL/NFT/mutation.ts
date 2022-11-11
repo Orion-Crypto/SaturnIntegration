@@ -54,8 +54,9 @@ export const mutateUpdateNFT = async (input: UpdateNFTInput) => {
         `,
         parameters
     );
-    const updateNFTPayload: UpdateNFTPayload = response?.updateNFT || {};
-    return updateNFTPayload;
+    const updateNFTPayload: UpdateNFTPayload = response?.updateNFT;
+    const nft = updateNFTPayload.nft || {};
+    return nft;
 };
 
 export const mutateDeleteNFTs = async (input: DeleteNFTsInput) => {

@@ -1,13 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { mutateAddNFTs } from '../../../src/api/GraphQL/NFT/mutation';
+import { mutateAddNFTs, mutateUpdateNFT } from '../../../src/api/GraphQL/NFT/mutation';
 import { AddNFTsInput } from '../../../src/types/Models/NFT/AddNFTs/AddNFTsInput';
+import { UpdateNFTInput } from '../../../src/types/Models/NFT/UpdateNFTs/UpdateNFTInput';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
         const body = req.body;
-        const input: AddNFTsInput = JSON.parse(body);
-        const nfts = await mutateAddNFTs(input);
-        res.status(200).json(nfts);
+        const input: UpdateNFTInput = JSON.parse(body);
+        const nft = await mutateUpdateNFT(input);
+        res.status(200).json(nft);
     } catch (error) {
         res.status(400).json({ error: error });
     }
