@@ -24,6 +24,11 @@ npm i
 
 4. Create a .env file in the top level of this repo by copy and pasting the file /devops/environment/example.env and renaming it to .env. Paste your Saturn API Key into the SATURN_API_KEY field
 
+```
+NEXT_PUBLIC_SATURN_GRAPHQL_API_URL=https://api.saturnnft.io/graphql/
+SATURN_API_KEY=
+```
+
 5. Finally, to start this repository, run:
 
 ```
