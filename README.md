@@ -3,6 +3,8 @@
 This repository is for the Cardano Saturn NFT documentation example. This example will go through a simple 1 - click multisig mint.
 If you would like additional API examples, contact us on Twitter: https://twitter.com/SaturnNFTio, Discord: http://discord.gg/NvVNfQmPjp, or the Mercury Chat Town Square (https://mercurychat.io/)
 
+<br />
+
 # One - Click Multisig Minting Test
 
 1. Pull this repository with:
@@ -29,6 +31,8 @@ npm run dev
 
 5. Sign the transaction and you have successfully minted an NFT using Saturn with 1 button click!
 
+<br />
+
 # Using the Saturn API To Implement Your Own Cardano Multisig Minting Engine
 
 Saturn uses a series of GraphQL apis for its minting engine. You can read all of the available apis in the Saturn API Documentation https://saturnnft.io/documentation.
@@ -43,3 +47,17 @@ This repository is split into 4 parts:
 To setup your own multisign minting engine. Copy the pattern for the above parts for whichever Saturn APIs you need.
 
 If you need any help, feel free to reach out on Twitter, in our Discord Server, or on the Mercury Chat town square =D.
+
+<br />
+
+# Additional - Mercury Chat Integration
+
+In addition to the Saturn APIs, if your DAPP wants to have built in user chat, we have provided an example of how to implement that here as well =).
+
+```
+import MercuryChat from '@mercury-chat/react-chat'
+
+<div>
+    <MercuryChat />
+</div>
+```
