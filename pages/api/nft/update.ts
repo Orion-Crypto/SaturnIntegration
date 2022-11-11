@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { mutateAddNFTs, mutateUpdateNFT } from '../../../src/api/GraphQL/NFT/mutation';
-import { AddNFTsInput } from '../../../src/types/Models/NFT/AddNFTs/AddNFTsInput';
+import { mutateUpdateNFT } from '../../../src/api/GraphQL/NFT/mutation';
 import { UpdateNFTInput } from '../../../src/types/Models/NFT/UpdateNFTs/UpdateNFTInput';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
