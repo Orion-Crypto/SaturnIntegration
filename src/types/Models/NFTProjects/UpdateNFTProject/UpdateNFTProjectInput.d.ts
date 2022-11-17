@@ -3,8 +3,10 @@ export interface UpdateNFTProjectInput {
     nftProjectId?: string;
     name?: string;
 
+    // Price Data
+    prices?: [UpdateNFTProjectPrice];
+
     // Mint Data
-    price?: number;
     mintEnd?: Date | null;
     lockAfterDatetime?: Date | null;
 
@@ -18,4 +20,13 @@ export interface UpdateNFTProjectInput {
 
     // Partner
     platformFeePercent?: number;
+}
+
+export interface UpdateNFTProjectPrice {
+    adaPrice?: number;
+    allowAdaPayment?: boolean;
+    tokenPrice?: number | null;
+    token?: string | null;
+    allowTokenPayment?: boolean;
+    isMainPrice?: boolean;
 }
