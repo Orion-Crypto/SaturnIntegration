@@ -22,6 +22,8 @@ export const saturnAPI = new API({
         nftproject: {
             add: () => `/nftproject/add`,
             update: () => `/nftproject/update`,
+            createRoyaltyMintTransaction: () => `/nftproject/createRoyaltyMintTransaction`,
+            submitRoyaltyMintTransaction: () => `/nftproject/submitRoyaltyMintTransaction`,
             createSingleOrBulkMintTransaction: () => `/nftproject/createSingleOrBulkMintTransaction`,
             submitSingleOrBulkMintTransaction: () => `/nftproject/submitSingleOrBulkMintTransaction`,
             createBuyDirectMintTransaction: () => `/nftproject/createBuyDirectMintTransaction`,

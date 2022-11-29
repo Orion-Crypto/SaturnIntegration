@@ -3,6 +3,9 @@ import { DeleteNFTsInput } from '../../types/Models/NFT/DeleteNFTs/DeleteNFTsInp
 import { UpdateNFTInput } from '../../types/Models/NFT/UpdateNFTs/UpdateNFTInput';
 import { saturnAPI } from '../api';
 
+//---------------------------------------------------------------------------------------------------//
+// NFT Add, Update, Delete Functions
+//---------------------------------------------------------------------------------------------------//
 export const addNFT = async (input: AddNFTsInput) => {
     try {
         const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nft.add()}`;
@@ -47,3 +50,4 @@ export const deleteNFTs = async (input: DeleteNFTsInput) => {
         return null;
     }
 };
+//---------------------------------------------------------------------------------------------------//

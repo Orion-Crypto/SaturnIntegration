@@ -5,7 +5,9 @@ import { addNFT, updateNFT } from '../src/api/Requests/nft';
 import {
     addNFTProject,
     createBuyDirectMintTransaction,
+    createRoyaltyMintTransaction,
     submitBuyDirectMintTransaction,
+    submitRoyaltyMintTransaction,
     updateNFTProject,
 } from '../src/api/Requests/nftproject';
 import Loader from '../src/cardano/loader';
@@ -16,8 +18,10 @@ import { AddNFTsInput } from '../src/types/Models/NFT/AddNFTs/AddNFTsInput';
 import { UpdateNFTInput } from '../src/types/Models/NFT/UpdateNFTs/UpdateNFTInput';
 import { CreateBuyDirectMintTransactionInput } from '../src/types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
 import { SubmitBuyDirectMintTransactionInput } from '../src/types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { CreateRoyaltyMintTransactionInput } from '../src/types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
 import { UpdateNFTProjectInput } from '../src/types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
 import { MintType } from '../src/types/Models/NFTProjects/MintType';
+import { SubmitRoyaltyMintTransactionInput } from '../src/types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
 
 const DirectPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +71,7 @@ const mintDirectNFT = async () => {
         };
         const updateNFTProjectPayload = await updateNFTProject(updateNFTProjectInput);
 
-        // 2) Add an NFT to the new NFT Project
+        // 3) Add an NFT to the new NFT Project
         const addNFTInput: AddNFTsInput = {
             nftProjectId: updateNFTProjectPayload?.id,
             count: 1,
@@ -75,7 +79,7 @@ const mintDirectNFT = async () => {
         const nfts = await addNFT(addNFTInput);
         const nft = nfts?.[0];
 
-        // 3) Update the NFT with data
+        // 4) Update the NFT with data
         const jsonProperties = {
             'minting-platform': 'https://saturnnft.io/',
         };
@@ -94,10 +98,26 @@ const mintDirectNFT = async () => {
         };
         await updateNFT(updateNFTInput);
 
-        // Create Royalty Mint
-        // Submit Royalty Mint
+        // Only need to create / submit royalty mint transaction once per project to start the mint
+        // If you already have a royalty token from a previous, or you don't want a royalty token. Make sure the NFT Project update did not
+        // include royalty data
 
-        // 4) Create a Mint Transaction for the NFT
+        // Create Royalty Mint
+        const createRoyaltyMintTransactionInput: CreateRoyaltyMintTransactionInput = {
+            nftProjectId: nftProject.id,
+        };
+
+        // Since we have not set any royalties, ignore the output
+        await createRoyaltyMintTransaction(createRoyaltyMintTransactionInput);
+
+        const submitRoyaltyMintTransactionInput: SubmitRoyaltyMintTransactionInput = {
+            nftProjectId: nftProject.id,
+            hexTransaction: null,
+            mintEnd: null,
+        };
+        await submitRoyaltyMintTransaction(submitRoyaltyMintTransactionInput);
+
+        // 5) Create a Mint Transaction for the NFT
         const createBuyDirectMintTransactionInput: CreateBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
             nftIds: [nft?.id],
@@ -109,7 +129,7 @@ const mintDirectNFT = async () => {
             console.log('Hex Transaction is null');
         }
 
-        // 5) Reconstruct and sign tx
+        // 6) Reconstruct and sign tx
         const reconstructedTx = Loader.Cardano.Transaction.from_bytes(fromHex(hexTransaction));
         const transactionWitnessSet = Loader.Cardano.TransactionWitnessSet.new();
         let txVKeyWitnesses = await signTx(reconstructedTx);
@@ -120,7 +140,7 @@ const mintDirectNFT = async () => {
         const signedBytes = signedTx.to_bytes();
         const signedHex = toHex(signedBytes);
 
-        // 6) Submit Mint Transaction for the NFT
+        // 7) Submit Mint Transaction for the NFT
         const submitInput: SubmitBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
             paymentAddress: address,
@@ -134,7 +154,7 @@ const mintDirectNFT = async () => {
             return;
         }
 
-        console.log('Congratulations! You have successfully minting a test NFT with the Saturn API! Tx Id:', transactionId);
+        console.log('Congratulations! You have successfully minting a test Direct NFT Mint with the Saturn API! Tx Id:', transactionId);
     } catch (error) {
         console.error(error);
     }

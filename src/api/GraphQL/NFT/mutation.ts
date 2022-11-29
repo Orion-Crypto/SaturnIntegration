@@ -1,6 +1,3 @@
-//---------------------------------------------------------------------------------------------------//
-// NFT Add, Update, Delete Functions
-
 import { gql } from 'graphql-request';
 import { AddNFTsInput } from '../../../types/Models/NFT/AddNFTs/AddNFTsInput';
 import { AddNFTsPayload } from '../../../types/Models/NFT/AddNFTs/AddNFTsPayload';
@@ -12,6 +9,8 @@ import { UpdateNFTInput } from '../../../types/Models/NFT/UpdateNFTs/UpdateNFTIn
 import { UpdateNFTPayload } from '../../../types/Models/NFT/UpdateNFTs/UpdateNFTPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
+//---------------------------------------------------------------------------------------------------//
+// NFT Add, Update, Delete Functions
 //---------------------------------------------------------------------------------------------------//
 export const mutateAddNFTs = async (input: AddNFTsInput) => {
     const parameters = { input: input };

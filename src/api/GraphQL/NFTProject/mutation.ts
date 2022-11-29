@@ -5,6 +5,8 @@ import { CreateBuyDirectMintTransactionInput } from '../../../types/Models/NFTPr
 import { CreateBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionPayload';
 import { SubmitBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
 import { SubmitBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionPayload';
+import { CreateRoyaltyMintTransactionInput } from '../../../types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { CreateRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionPayload';
 import { AddNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
 import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
 import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
@@ -16,6 +18,8 @@ import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NF
 import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
 import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
+import { SubmitRoyaltyMintTransactionInput } from '../../../types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
+import { SubmitRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//
@@ -45,7 +49,7 @@ export const mutateAddNFTProjects = async () => {
 
 export const mutateUpdateNFTProject = async (input: UpdateNFTProjectInput) => {
     const parameters = { input: input };
-    graphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(getGraphQLHeaders());
     const response = await graphQLClient.request(
         gql`
             mutation UpdateNFTProject($input: UpdateNFTProjectInput!) {
@@ -69,7 +73,7 @@ export const mutateUpdateNFTProject = async (input: UpdateNFTProjectInput) => {
 
 export const mutateDeleteNFTProjects = async (input: DeleteNFTProjectsInput) => {
     const parameters = { input: input };
-    graphQLClient.setHeaders(await getGraphQLHeaders());
+    graphQLClient.setHeaders(getGraphQLHeaders());
     const response = await graphQLClient.request(
         gql`
             mutation DeleteNFTProjects($input: DeleteNFTProjectsInput!) {
@@ -89,6 +93,50 @@ export const mutateDeleteNFTProjects = async (input: DeleteNFTProjectsInput) => 
     const deleteNFTProjects: DeleteNFTProjectsPayload = response?.deleteNFTProjects;
     const nftProjects: any = deleteNFTProjects.nftProjects || {};
     return nftProjects;
+};
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
+// Royalty Minting Functions
+//---------------------------------------------------------------------------------------------------//
+export const mutateCreateRoyaltyMintTransaction = async (input: CreateRoyaltyMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation CreateRoyaltyMintTransaction($input: CreateRoyaltyMintTransactionInput!) {
+                createRoyaltyMintTransaction(input: $input) {
+                    hexTransaction
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const createRoyaltyMintTransactionPayload: CreateRoyaltyMintTransactionPayload = response?.createRoyaltyMintTransaction || {};
+    return createRoyaltyMintTransactionPayload;
+};
+
+export const mutateSubmitRoyaltyMintTransaction = async (input: SubmitRoyaltyMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation SubmitRoyaltyMintTransaction($input: SubmitRoyaltyMintTransactionInput!) {
+                submitRoyaltyMintTransaction(input: $input) {
+                    transactionId
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const submitRoyaltyMintTransactionPayload: SubmitRoyaltyMintTransactionPayload = response?.submitRoyaltyMintTransaction || {};
+    return submitRoyaltyMintTransactionPayload;
 };
 //---------------------------------------------------------------------------------------------------//
 
