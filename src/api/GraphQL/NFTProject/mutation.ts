@@ -1,15 +1,21 @@
 import { gql } from 'graphql-request';
+import { CancelBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionInput';
+import { CancelBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionPayload';
+import { CreateBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
+import { CreateBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionPayload';
+import { SubmitBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { SubmitBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionPayload';
 import { AddNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
 import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
 import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
+import { UpdateNFTProjectInput } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
 import { CancelSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionInput';
 import { CancelSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionPayload';
 import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
 import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
 import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
-import { UpdateNFTProjectInput } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
-import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//
@@ -153,5 +159,72 @@ export const mutateCancelSingleOrBulkMintTransaction = async (input: CancelSingl
     const cancelSingleOrBulkMintTransactionPayload: CancelSingleOrBulkMintTransactionPayload =
         response?.cancelSingleOrBulkMintTransaction || {};
     return cancelSingleOrBulkMintTransactionPayload;
+};
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
+// Single Or Bulk NFT Minting Functions
+//---------------------------------------------------------------------------------------------------//
+export const mutateCreateBuyDirectMintTransaction = async (input: CreateBuyDirectMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation CreateBuyDirectMintTransaction($input: CreateBuyDirectMintTransactionInput!) {
+                createBuyDirectMintTransaction(input: $input) {
+                    hexTransaction
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+
+    const createBuyDirectMintTransaction: CreateBuyDirectMintTransactionPayload = response?.createBuyDirectMintTransaction || {};
+    return createBuyDirectMintTransaction;
+};
+
+export const mutateSubmitBuyDirectMintTransaction = async (input: SubmitBuyDirectMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation SubmitBuyDirectMintTransaction($input: SubmitBuyDirectMintTransactionInput!) {
+                submitSingleOrBulkMintTransaction(input: $input) {
+                    transactionId
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+
+    const submitBuyDirectMintTransactionPayload: SubmitBuyDirectMintTransactionPayload = response?.submitSingleOrBulkMintTransaction || {};
+    return submitBuyDirectMintTransactionPayload;
+};
+
+export const mutateCancelBuyDirectBulkMintTransaction = async (input: CancelBuyDirectMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation CancelBuyDirectBulkMintTransaction($input: CancelBuyDirectMintTransactionInput!) {
+                cancelBuyDirectBulkMintTransaction(input: $input) {
+                    nftProjectId
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+
+    const cancelBuyDirectBulkMintTransaction: CancelBuyDirectMintTransactionPayload = response?.cancelBuyDirectBulkMintTransaction || {};
+    return cancelBuyDirectBulkMintTransaction;
 };
 //---------------------------------------------------------------------------------------------------//

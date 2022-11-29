@@ -1,7 +1,7 @@
 export interface CreateBuyDirectMintTransactionInput {
     nftProjectId: string;
     paymentAddress: string;
-    count: number;
+    nftIds: string[];
     paymentToken?: string | null;
     gReCaptchaToken?: string;
 }

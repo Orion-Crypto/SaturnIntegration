@@ -23,6 +23,8 @@ export const saturnAPI = new API({
             add: () => `/nftproject/add`,
             createSingleOrBulkMintTransaction: () => `/nftproject/createSingleOrBulkMintTransaction`,
             submitSingleOrBulkMintTransaction: () => `/nftproject/submitSingleOrBulkMintTransaction`,
+            createBuyDirectMintTransaction: () => `/nftproject/createBuyDirectMintTransaction`,
+            submitBuyDirectMintTransaction: () => `/nftproject/submitBuyDirectMintTransaction`,
         },
     },
 });
