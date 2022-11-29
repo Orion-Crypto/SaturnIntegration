@@ -1,15 +1,15 @@
 import { gql } from 'graphql-request';
-import { AddNFTProjectsPayload } from '../../../types/Models/NFTProjects/AddNFTProjects/AddNFTProjectsPayload';
-import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProjects/DeleteNFTProjects/DeleteNFTProjectsInput';
-import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProjects/DeleteNFTProjects/DeleteNFTsPayload';
+import { AddNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
+import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
+import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
 import { CancelSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionInput';
 import { CancelSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionPayload';
 import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
 import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
 import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
-import { UpdateNFTProjectInput } from '../../../types/Models/NFTProjects/UpdateNFTProject/UpdateNFTProjectInput';
-import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProjects/UpdateNFTProject/UpdateNFTProjectPayload';
+import { UpdateNFTProjectInput } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//

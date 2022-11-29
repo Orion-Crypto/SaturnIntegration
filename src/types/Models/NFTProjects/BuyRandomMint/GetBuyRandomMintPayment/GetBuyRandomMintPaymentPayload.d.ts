@@ -1,6 +1,6 @@
 import { SaturnError } from '../../../../../Classes/saturnError';
 
-export interface GetNFTProjectPaymentPayload {
+export interface GetBuyRandomMintPaymentPayload {
     id?: string;
 
     // Basic Data

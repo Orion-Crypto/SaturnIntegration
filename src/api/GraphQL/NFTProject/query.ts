@@ -1,15 +1,14 @@
-//---------------------------------------------------------------------------------------------------//
-// Get NFTProject Functions
-
 import { gql } from 'graphql-request';
 import { GraphQLParameters } from '../../../types/GraphQLParameters';
-import { GetNFTProjectPaymentInput } from '../../../types/Models/NFTProjects/GetNFTProjectPayment/GetNFTProjectPaymentInput';
-import { GetNFTProjectPaymentPayload } from '../../../types/Models/NFTProjects/GetNFTProjectPayment/GetNFTProjectPaymentPayload';
-import { GetNFTProjectPurchasesInput } from '../../../types/Models/NFTProjects/GetNFTProjectPurchases/GetNFTProjectPurchasesInput';
-import { GetNFTProjectPurchasesPayload } from '../../../types/Models/NFTProjects/GetNFTProjectPurchases/GetNFTProjectPurchasesPayload';
+import { GetBuyRandomMintPaymentInput } from '../../../types/Models/NFTProjects/BuyRandomMint/GetBuyRandomMintPayment/GetBuyRandomMintPaymentInput';
+import { GetBuyRandomMintPaymentPayload } from '../../../types/Models/NFTProjects/BuyRandomMint/GetBuyRandomMintPayment/GetBuyRandomMintPaymentPayload';
+import { GetBuyRandomMintPurchasesInput } from '../../../types/Models/NFTProjects/BuyRandomMint/GetBuyRandomMintPurchases/GetBuyRandomMintPurchasesInput';
+import { GetBuyRandomMintPurchasesPayload } from '../../../types/Models/NFTProjects/BuyRandomMint/GetBuyRandomMintPurchases/GetBuyRandomMintPurchasesPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 import { calculateStringFromParameters } from '../parameters';
 
+//---------------------------------------------------------------------------------------------------//
+// Get NFTProject Functions
 //---------------------------------------------------------------------------------------------------//
 export const queryNFTProject = async (id: string) => {
     if (!id) return null;
@@ -49,14 +48,14 @@ export const queryNFTProjects = async (parameters?: GraphQLParameters) => {
 //---------------------------------------------------------------------------------------------------//
 // Get NFTProject Mint Functions
 //---------------------------------------------------------------------------------------------------//
-export const queryNFTProjectPayment = async (nftProjectPaymentInput: GetNFTProjectPaymentInput) => {
-    if (nftProjectPaymentInput == null || nftProjectPaymentInput.nftProjectId == null) return null;
+export const queryBuyRandomMintPayment = async (getBuyRandomMintPaymentInput: GetBuyRandomMintPaymentInput) => {
+    if (getBuyRandomMintPaymentInput == null || getBuyRandomMintPaymentInput.nftProjectId == null) return null;
 
-    const input = { input: nftProjectPaymentInput };
+    const input = { input: getBuyRandomMintPaymentInput };
     const response = await graphQLClient.request(
         gql`
-            query NFTProjectPayment($input: GetNFTProjectPaymentInput!) {
-                nFTProjectPayment(input: $input) {
+            query BuyRandomMintPayment($input: GetBuyRandomMintPaymentInput!) {
+                buyRandomMintPayment(input: $input) {
                     id
                     name
                     blockchain
@@ -82,18 +81,18 @@ export const queryNFTProjectPayment = async (nftProjectPaymentInput: GetNFTProje
         input
     );
 
-    const nftProject: GetNFTProjectPaymentPayload = response?.nFTProjectPayment || {};
+    const nftProject: GetBuyRandomMintPaymentPayload = response?.buyRandomMintPayment || {};
     return nftProject;
 };
 
-export const queryNFTProjectPurchases = async (nftProjectPurchasesInput: GetNFTProjectPurchasesInput) => {
-    if (!nftProjectPurchasesInput) return null;
+export const queryBuyRandomMintPurchases = async (getBuyRandomMintPurchasesInput: GetBuyRandomMintPurchasesInput) => {
+    if (!getBuyRandomMintPurchasesInput) return null;
 
-    const input = { input: nftProjectPurchasesInput };
+    const input = { input: getBuyRandomMintPurchasesInput };
     const response = await graphQLClient.request(
         gql`
-            query NFTProjectPurchases($input: GetNFTProjectPurchasesInput!) {
-                nFTProjectPurchases(input: $input) {
+            query BuyRandomMintPurchases($input: GetBuyRandomMintPurchasesInput!) {
+                buyRandomMintPurchases(input: $input) {
                     nftProjectId
                     address
                     purchasedNFTs {
@@ -108,7 +107,7 @@ export const queryNFTProjectPurchases = async (nftProjectPurchasesInput: GetNFTP
         `,
         input
     );
-    const purchasedNFTs: GetNFTProjectPurchasesPayload = response?.nFTProjectPurchases || {};
+    const purchasedNFTs: GetBuyRandomMintPurchasesPayload = response?.buyRandomMintPurchases || {};
     return purchasedNFTs;
 };
 //---------------------------------------------------------------------------------------------------//
