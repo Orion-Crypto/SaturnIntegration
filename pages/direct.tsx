@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
-import { mutateSubmitSingleOrBulkMintTransaction } from '../src/api/GraphQL/NFTProject/mutation';
 import { addNFT, updateNFT } from '../src/api/Requests/nft';
 import {
     addNFTProject,
     createBuyDirectMintTransaction,
-    createSingleOrBulkMintTransaction,
-    submitSingleOrBulkMintTransaction,
+    submitBuyDirectMintTransaction,
+    updateNFTProject,
 } from '../src/api/Requests/nftproject';
 import Loader from '../src/cardano/loader';
 import { fromHex, toHex } from '../src/cardano/serialization';
@@ -16,8 +15,9 @@ import { Spinner } from '../src/components/Elements/Spinner';
 import { AddNFTsInput } from '../src/types/Models/NFT/AddNFTs/AddNFTsInput';
 import { UpdateNFTInput } from '../src/types/Models/NFT/UpdateNFTs/UpdateNFTInput';
 import { CreateBuyDirectMintTransactionInput } from '../src/types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
-import { CreateSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
-import { SubmitSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
+import { SubmitBuyDirectMintTransactionInput } from '../src/types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { UpdateNFTProjectInput } from '../src/types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { MintType } from '../src/types/Models/NFTProjects/MintType';
 
 const DirectPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -40,7 +40,9 @@ const DirectPage = () => {
                 <div className="">
                     <Image src={'/images/Logo.png'} alt={'Saturn Logo'} width={48} height={48} />
                 </div>
-                <div className="flex w-104 items-center justify-center">{isLoading ? <Spinner /> : 'Create And Mint Test NFT With Saturn'}</div>
+                <div className="flex w-104 items-center justify-center">
+                    {isLoading ? <Spinner /> : 'Create And Mint A Direct NFT With Saturn'}
+                </div>
             </div>
         </div>
     );
@@ -57,9 +59,17 @@ const mintDirectNFT = async () => {
         // 1) Create a new NFT Project
         const nftProject = await addNFTProject();
 
+        // 2) Update the new NFT Project to support direct buy
+
+        const updateNFTProjectInput: UpdateNFTProjectInput = {
+            nftProjectId: nftProject?.id,
+            mintType: MintType.BuyDirect,
+        };
+        const updateNFTProjectPayload = await updateNFTProject(updateNFTProjectInput);
+
         // 2) Add an NFT to the new NFT Project
         const addNFTInput: AddNFTsInput = {
-            nftProjectId: nftProject?.id,
+            nftProjectId: updateNFTProjectPayload?.id,
             count: 1,
         };
         const nfts = await addNFT(addNFTInput);
@@ -84,13 +94,15 @@ const mintDirectNFT = async () => {
         };
         await updateNFT(updateNFTInput);
 
+        // Create Royalty Mint
+        // Submit Royalty Mint
+
         // 4) Create a Mint Transaction for the NFT
         const createBuyDirectMintTransactionInput: CreateBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
             nftIds: [nft?.id],
             paymentAddress: address,
         };
-
         const createBuyDirectMintPayload = await createBuyDirectMintTransaction(createBuyDirectMintTransactionInput);
         const hexTransaction = createBuyDirectMintPayload.hexTransaction;
         if (!hexTransaction) {
@@ -109,15 +121,14 @@ const mintDirectNFT = async () => {
         const signedHex = toHex(signedBytes);
 
         // 6) Submit Mint Transaction for the NFT
-        const submitInput: SubmitSingleOrBulkMintTransactionInput = {
+        const submitInput: SubmitBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
-            nftIds: [nft?.id],
             paymentAddress: address,
             hexTransaction: signedHex,
         };
 
-        const submitSingleNFTMintTransaction = await submitSingleOrBulkMintTransaction(submitInput);
-        const transactionId = submitSingleNFTMintTransaction?.transactionId;
+        const submitBuyDirectMintTransactionPayload = await submitBuyDirectMintTransaction(submitInput);
+        const transactionId = submitBuyDirectMintTransactionPayload?.transactionId;
         if (!transactionId) {
             console.log('Transaction Id is null');
             return;

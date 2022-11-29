@@ -1,5 +1,6 @@
 import { CreateBuyDirectMintTransactionInput } from '../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
 import { SubmitBuyDirectMintTransactionInput } from '../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { UpdateNFTProjectInput } from '../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
 import { CreateSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
 import { SubmitSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 import { saturnAPI } from '../api';
@@ -9,6 +10,21 @@ export const addNFTProject = async () => {
         const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.add()}`;
         const response = await fetch(url, {
             method: 'POST',
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+export const updateNFTProject = async (input: UpdateNFTProjectInput) => {
+    try {
+        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.update()}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(input),
         });
         const data = await response.json();
         return data;

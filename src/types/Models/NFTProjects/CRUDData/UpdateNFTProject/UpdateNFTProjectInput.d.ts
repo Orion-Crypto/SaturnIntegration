@@ -15,6 +15,7 @@ export interface UpdateNFTProjectInput {
     royaltyPercent?: number;
 
     // NFT Project Mint
+    mintType?: number;
     maxPerTransaction?: number;
     maxPerWallet?: number;
 
