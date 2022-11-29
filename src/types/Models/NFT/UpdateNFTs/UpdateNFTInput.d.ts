@@ -4,4 +4,5 @@ export interface UpdateNFTInput {
     name?: string;
     files?: NFTFileData[];
     jsonProperties?: string;
+    individualPrice?: NFTPriceData;
 }

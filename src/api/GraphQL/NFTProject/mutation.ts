@@ -240,7 +240,7 @@ export const mutateSubmitBuyDirectMintTransaction = async (input: SubmitBuyDirec
     const response = await graphQLClient.request(
         gql`
             mutation SubmitBuyDirectMintTransaction($input: SubmitBuyDirectMintTransactionInput!) {
-                submitSingleOrBulkMintTransaction(input: $input) {
+                submitBuyDirectMintTransaction(input: $input) {
                     transactionId
                     error {
                         message
@@ -251,7 +251,7 @@ export const mutateSubmitBuyDirectMintTransaction = async (input: SubmitBuyDirec
         parameters
     );
 
-    const submitBuyDirectMintTransactionPayload: SubmitBuyDirectMintTransactionPayload = response?.submitSingleOrBulkMintTransaction || {};
+    const submitBuyDirectMintTransactionPayload: SubmitBuyDirectMintTransactionPayload = response?.submitBuyDirectMintTransaction || {};
     return submitBuyDirectMintTransactionPayload;
 };
 

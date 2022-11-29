@@ -80,6 +80,11 @@ const mintDirectNFT = async () => {
         const nft = nfts?.[0];
 
         // 4) Update the NFT with data
+        const individualNFTPrice = {
+            adaPrice: 6,
+            allowAdaPayment: true,
+            isMainPrice: true,
+        };
         const jsonProperties = {
             'minting-platform': 'https://saturnnft.io/',
         };
@@ -95,6 +100,7 @@ const mintDirectNFT = async () => {
                 },
             ],
             jsonProperties: JSON.stringify(jsonProperties),
+            individualPrice: individualNFTPrice,
         };
         await updateNFT(updateNFTInput);
 
