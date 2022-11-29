@@ -102,7 +102,7 @@ const mintDirectNFT = async () => {
         // If you already have a royalty token from a previous, or you don't want a royalty token. Make sure the NFT Project update did not
         // include royalty data
 
-        // Create Royalty Mint
+        // 5) Create Royalty Mint
         const createRoyaltyMintTransactionInput: CreateRoyaltyMintTransactionInput = {
             nftProjectId: nftProject.id,
         };
@@ -117,7 +117,7 @@ const mintDirectNFT = async () => {
         };
         await submitRoyaltyMintTransaction(submitRoyaltyMintTransactionInput);
 
-        // 5) Create a Mint Transaction for the NFT
+        // 6) Create a Mint Transaction for the NFT
         const createBuyDirectMintTransactionInput: CreateBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
             nftIds: [nft?.id],
@@ -129,7 +129,7 @@ const mintDirectNFT = async () => {
             console.log('Hex Transaction is null');
         }
 
-        // 6) Reconstruct and sign tx
+        // 7) Reconstruct and sign tx
         const reconstructedTx = Loader.Cardano.Transaction.from_bytes(fromHex(hexTransaction));
         const transactionWitnessSet = Loader.Cardano.TransactionWitnessSet.new();
         let txVKeyWitnesses = await signTx(reconstructedTx);
@@ -140,7 +140,7 @@ const mintDirectNFT = async () => {
         const signedBytes = signedTx.to_bytes();
         const signedHex = toHex(signedBytes);
 
-        // 7) Submit Mint Transaction for the NFT
+        // 8) Submit Mint Transaction for the NFT
         const submitInput: SubmitBuyDirectMintTransactionInput = {
             nftProjectId: nftProject?.id,
             paymentAddress: address,
