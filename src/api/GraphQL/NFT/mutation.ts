@@ -1,12 +1,12 @@
 import { gql } from 'graphql-request';
-import { AddNFTsInput } from '../../../types/Models/NFT/AddNFTs/AddNFTsInput';
-import { AddNFTsPayload } from '../../../types/Models/NFT/AddNFTs/AddNFTsPayload';
-import { DeleteAllNFTsInput } from '../../../types/Models/NFT/DeleteAllNFTs/DeleteAllNFTsInput';
-import { DeleteAllNFTsPayload } from '../../../types/Models/NFT/DeleteAllNFTs/DeleteAllNFTsPayload';
-import { DeleteNFTsInput } from '../../../types/Models/NFT/DeleteNFTs/DeleteNFTsInput';
-import { DeleteNFTsPayload } from '../../../types/Models/NFT/DeleteNFTs/DeleteNFTsPayload';
-import { UpdateNFTInput } from '../../../types/Models/NFT/UpdateNFTs/UpdateNFTInput';
-import { UpdateNFTPayload } from '../../../types/Models/NFT/UpdateNFTs/UpdateNFTPayload';
+import { AddNFTsInput } from '../../../types/Models/NFT/GraphQL/AddNFTs/AddNFTsInput';
+import { AddNFTsPayload } from '../../../types/Models/NFT/GraphQL/AddNFTs/AddNFTsPayload';
+import { DeleteAllNFTsInput } from '../../../types/Models/NFT/GraphQL/DeleteAllNFTs/DeleteAllNFTsInput';
+import { DeleteAllNFTsPayload } from '../../../types/Models/NFT/GraphQL/DeleteAllNFTs/DeleteAllNFTsPayload';
+import { DeleteNFTsInput } from '../../../types/Models/NFT/GraphQL/DeleteNFTs/DeleteNFTsInput';
+import { DeleteNFTsPayload } from '../../../types/Models/NFT/GraphQL/DeleteNFTs/DeleteNFTsPayload';
+import { UpdateNFTInput } from '../../../types/Models/NFT/GraphQL/UpdateNFTs/UpdateNFTInput';
+import { UpdateNFTPayload } from '../../../types/Models/NFT/GraphQL/UpdateNFTs/UpdateNFTPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//

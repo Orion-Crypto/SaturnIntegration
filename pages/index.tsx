@@ -8,10 +8,10 @@ import Loader from '../src/cardano/loader';
 import { fromHex, toHex } from '../src/cardano/serialization';
 import { connectWallet, getAddress, signTx } from '../src/cardano/wallet';
 import { Spinner } from '../src/components/Elements/Spinner';
-import { AddNFTsInput } from '../src/types/Models/NFT/AddNFTs/AddNFTsInput';
+import { AddNFTsInput } from '../src/types/Models/NFT/GraphQL/AddNFTs/AddNFTsInput';
 import { UpdateNFTInput } from '../src/types/Models/NFT/UpdateNFTs/UpdateNFTInput';
-import { CreateSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
-import { SubmitSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
+import { CreateSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
+import { SubmitSingleOrBulkMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 
 const IndexPage = () => {
     const [isLoading, setIsLoading] = useState(false);

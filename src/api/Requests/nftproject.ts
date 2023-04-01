@@ -1,10 +1,13 @@
-import { CreateBuyDirectMintTransactionInput } from '../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
-import { SubmitBuyDirectMintTransactionInput } from '../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
-import { CreateRoyaltyMintTransactionInput } from '../../types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
-import { UpdateNFTProjectInput } from '../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
-import { CreateSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
-import { SubmitSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
-import { SubmitRoyaltyMintTransactionInput } from '../../types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
+import { CreateBuyDirectMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
+import { SubmitBuyDirectMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { CreateBuyRandomMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/BuyRandomMint/CreateBuyRandomMintTransaction/CreateBuyRandomMintTransactionInput';
+import { SubmitBuyRandomMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionInput';
+import { CreateRoyaltyMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { StartMintInput } from '../../types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintInput';
+import { UpdateNFTProjectInput } from '../../types/Models/NFTProject/GraphQL/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { CreateSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
+import { SubmitSingleOrBulkMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
+import { SubmitRoyaltyMintTransactionInput } from '../../types/Models/NFTProject/GraphQL/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
 import { saturnAPI } from '../api';
 
 //---------------------------------------------------------------------------------------------------//
@@ -38,6 +41,27 @@ export const updateNFTProject = async (input: UpdateNFTProjectInput) => {
         return null;
     }
 };
+
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
+// Start Mint Functions
+//---------------------------------------------------------------------------------------------------//
+export const startMint = async (input: StartMintInput) => {
+    try {
+        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.startMint()}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(input),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+//---------------------------------------------------------------------------------------------------//
 
 //---------------------------------------------------------------------------------------------------//
 // Royalty Mint Functions
@@ -95,6 +119,40 @@ export const createSingleOrBulkMintTransaction = async (input: CreateSingleOrBul
 export const submitSingleOrBulkMintTransaction = async (input: SubmitSingleOrBulkMintTransactionInput) => {
     try {
         const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.submitSingleOrBulkMintTransaction()}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(input),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
+// Buy Random Mint Functions
+//---------------------------------------------------------------------------------------------------//
+export const createBuyRandomMintTransaction = async (input: CreateBuyRandomMintTransactionInput) => {
+    try {
+        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.createBuyRandomMintTransaction()}`;
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(input),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+export const submitBuyRandomMintTransaction = async (input: SubmitBuyRandomMintTransactionInput) => {
+    try {
+        const url = `${saturnAPI.baseURL}${saturnAPI.endpoints.nftproject.submitBuyRandomMintTransaction()}`;
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(input),

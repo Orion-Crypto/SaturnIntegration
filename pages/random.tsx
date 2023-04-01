@@ -1,12 +1,16 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
+import { mutateCreateBuyRandomMintTransaction } from '../src/api/GraphQL/NFTProject/mutation';
 import { addNFT, updateNFT } from '../src/api/Requests/nft';
 import {
     addNFTProject,
     createBuyDirectMintTransaction,
+    createBuyRandomMintTransaction,
     createRoyaltyMintTransaction,
+    startMint,
     submitBuyDirectMintTransaction,
+    submitBuyRandomMintTransaction,
     submitRoyaltyMintTransaction,
     updateNFTProject,
 } from '../src/api/Requests/nftproject';
@@ -17,18 +21,19 @@ import { Spinner } from '../src/components/Elements/Spinner';
 import { AddNFTsInput } from '../src/types/Models/NFT/GraphQL/AddNFTs/AddNFTsInput';
 import { UpdateNFTInput } from '../src/types/Models/NFT/GraphQL/UpdateNFTs/UpdateNFTInput';
 import { LocalMintType } from '../src/types/Models/NFTProject/Enums/MintType';
-import { CreateBuyDirectMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
-import { SubmitBuyDirectMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { CreateBuyRandomMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/BuyRandomMint/CreateBuyRandomMintTransaction/CreateBuyRandomMintTransactionInput';
+import { SubmitBuyRandomMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionInput';
 import { CreateRoyaltyMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { StartMintInput } from '../src/types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintInput';
 import { UpdateNFTProjectInput } from '../src/types/Models/NFTProject/GraphQL/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
 import { SubmitRoyaltyMintTransactionInput } from '../src/types/Models/NFTProject/GraphQL/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
 
-const DirectPage = () => {
+const RandomPage = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const mint = async () => {
         setIsLoading(true);
-        await mintDirectNFT();
+        await mintRandomNFT();
         setIsLoading(false);
     };
     return (
@@ -52,7 +57,7 @@ const DirectPage = () => {
     );
 };
 
-const mintDirectNFT = async () => {
+const mintRandomNFT = async () => {
     try {
         await Loader.load();
 
@@ -64,7 +69,6 @@ const mintDirectNFT = async () => {
         const nftProject = await addNFTProject();
 
         // 2) Update the new NFT Project to support direct buy
-
         const updateNFTProjectInput: UpdateNFTProjectInput = {
             nftProjectId: nftProject?.id,
             mintType: LocalMintType.Buy,
@@ -104,11 +108,7 @@ const mintDirectNFT = async () => {
         };
         await updateNFT(updateNFTInput);
 
-        // Only need to create / submit royalty mint transaction once per project to start the mint
-        // If you already have a royalty token from a previous, or you don't want a royalty token. Make sure the NFT Project update did not
-        // include royalty data
-
-        // 5) Create Royalty Mint
+        // 5) Create and submit the royalty transaction
         const createRoyaltyMintTransactionInput: CreateRoyaltyMintTransactionInput = {
             nftProjectId: nftProject.id,
         };
@@ -123,19 +123,32 @@ const mintDirectNFT = async () => {
         };
         await submitRoyaltyMintTransaction(submitRoyaltyMintTransactionInput);
 
-        // 6) Create a Mint Transaction for the NFT
-        const createBuyDirectMintTransactionInput: CreateBuyDirectMintTransactionInput = {
-            nftProjectId: nftProject?.id,
-            nftIds: [nft?.id],
-            paymentAddress: address,
+        const inputStartMintInput: StartMintInput = {
+            nftProjectId: nftProject.id,
+            mintEnd: null,
         };
-        const createBuyDirectMintPayload = await createBuyDirectMintTransaction(createBuyDirectMintTransactionInput);
-        const hexTransaction = createBuyDirectMintPayload.hexTransaction;
+
+        // 6) Start the Mint
+        await startMint(inputStartMintInput);
+
+        // The following 3 steps are all that is needed on a mint page, the rest is just setting up the NFT Project
+        // Setting up the NFT Project can be done in https://saturnnft.io/
+
+        // 7) Create a Mint Transaction for the NFT
+        const createBuyRandomMintTransactionInput: CreateBuyRandomMintTransactionInput = {
+            nftProjectId: nftProject?.id,
+            paymentAddress: address,
+            count: 1,
+            paymentToken: 'ada',
+            mintingPassword: '',
+        };
+        const createBuyRandomMintPayload = await createBuyRandomMintTransaction(createBuyRandomMintTransactionInput);
+        const hexTransaction = createBuyRandomMintPayload.hexTransaction;
         if (!hexTransaction) {
             console.log('Hex Transaction is null');
         }
 
-        // 7) Reconstruct and sign tx
+        // 8) Reconstruct and sign tx
         const reconstructedTx = Loader.Cardano.Transaction.from_bytes(fromHex(hexTransaction));
         const transactionWitnessSet = Loader.Cardano.TransactionWitnessSet.new();
         let txVKeyWitnesses = await signTx(reconstructedTx);
@@ -146,15 +159,15 @@ const mintDirectNFT = async () => {
         const signedBytes = signedTx.to_bytes();
         const signedHex = toHex(signedBytes);
 
-        // 8) Submit Mint Transaction for the NFT
-        const submitInput: SubmitBuyDirectMintTransactionInput = {
+        // 9) Submit Mint Transaction for the NFT
+        const submitInput: SubmitBuyRandomMintTransactionInput = {
             nftProjectId: nftProject?.id,
             paymentAddress: address,
             hexTransaction: signedHex,
         };
 
-        const submitBuyDirectMintTransactionPayload = await submitBuyDirectMintTransaction(submitInput);
-        const transactionId = submitBuyDirectMintTransactionPayload?.transactionId;
+        const submitBuyRandomMintTransactionPayload = await submitBuyRandomMintTransaction(submitInput);
+        const transactionId = submitBuyRandomMintTransactionPayload?.transactionId;
         if (!transactionId) {
             console.log('Transaction Id is null');
             return;
@@ -166,4 +179,4 @@ const mintDirectNFT = async () => {
     }
 };
 
-export default DirectPage;
+export default RandomPage;

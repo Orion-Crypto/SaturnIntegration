@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { mutateCreateRoyaltyMintTransaction } from '../../../src/api/GraphQL/NFTProject/mutation';
-import { CreateRoyaltyMintTransactionInput } from '../../../src/types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { CreateRoyaltyMintTransactionInput } from '../../../src/types/Models/NFTProject/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {

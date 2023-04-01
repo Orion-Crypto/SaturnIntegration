@@ -1,6 +1,6 @@
-import { AddNFTsInput } from '../../types/Models/NFT/AddNFTs/AddNFTsInput';
-import { DeleteNFTsInput } from '../../types/Models/NFT/DeleteNFTs/DeleteNFTsInput';
-import { UpdateNFTInput } from '../../types/Models/NFT/UpdateNFTs/UpdateNFTInput';
+import { AddNFTsInput } from '../../types/Models/NFT/GraphQL/AddNFTs/AddNFTsInput';
+import { DeleteNFTsInput } from '../../types/Models/NFT/GraphQL/DeleteNFTs/DeleteNFTsInput';
+import { UpdateNFTInput } from '../../types/Models/NFT/GraphQL/UpdateNFTs/UpdateNFTInput';
 import { saturnAPI } from '../api';
 
 //---------------------------------------------------------------------------------------------------//

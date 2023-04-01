@@ -1,6 +1,6 @@
 import { SaturnError } from '../../../../../Classes/saturnError';
 
-export interface CancelBuyMintTransactionPayload {
-    nftProjectId?: string;
+export interface GetPublicNFTProjectPayload {
+    nftProject?: any;
     error?: SaturnError;
 }

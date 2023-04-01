@@ -1,6 +1,6 @@
 import { SaturnError } from '../../../../../Classes/saturnError';
 
-export interface CreateBuyMintTransactionPayload {
-    hexTransaction?: string;
+export interface SubmitBuyRandomMintTransactionPayload {
+    transactionId?: string;
     error?: SaturnError;
 }

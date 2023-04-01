@@ -1,25 +1,31 @@
 import { gql } from 'graphql-request';
-import { CancelBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionInput';
-import { CancelBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionPayload';
-import { CreateBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
-import { CreateBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionPayload';
-import { SubmitBuyDirectMintTransactionInput } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
-import { SubmitBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProjects/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionPayload';
-import { CreateRoyaltyMintTransactionInput } from '../../../types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
-import { CreateRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProjects/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionPayload';
-import { AddNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
-import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
-import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProjects/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
-import { UpdateNFTProjectInput } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
-import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProjects/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
-import { CancelSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionInput';
-import { CancelSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionPayload';
-import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
-import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
-import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
-import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProjects/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
-import { SubmitRoyaltyMintTransactionInput } from '../../../types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
-import { SubmitRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProjects/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionPayload';
+import { CreateRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { CreateRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionPayload';
+import { AddNFTProjectsPayload } from '../../../types/Models/NFTProject/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
+import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProject/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
+import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProject/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
+import { UpdateNFTProjectInput } from '../../../types/Models/NFTProject/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProject/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
+import { CancelBuyDirectMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionInput';
+import { CancelBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionPayload';
+import { CreateBuyDirectMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
+import { CreateBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionPayload';
+import { SubmitBuyDirectMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionInput';
+import { SubmitBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/SubmitBuyDirectMintTransaction/SubmitBuyDirectMintTransactionPayload';
+import { CreateBuyRandomMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/CreateBuyRandomMintTransaction/CreateBuyRandomMintTransactionInput';
+import { CreateBuyRandomMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/CreateBuyRandomMintTransaction/CreateBuyRandomMintTransactionPayload';
+import { SubmitBuyRandomMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionInput';
+import { SubmitBuyRandomMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionPayload';
+import { StartMintInput } from '../../../types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintInput';
+import { StartMintPayload } from '../../../types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintPayload';
+import { CancelSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionInput';
+import { CancelSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionPayload';
+import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
+import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
+import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
+import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
+import { SubmitRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
+import { SubmitRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//
@@ -211,6 +217,51 @@ export const mutateCancelSingleOrBulkMintTransaction = async (input: CancelSingl
 //---------------------------------------------------------------------------------------------------//
 
 //---------------------------------------------------------------------------------------------------//
+// Buy Random NFT Minting Functions
+//---------------------------------------------------------------------------------------------------//
+export const mutateCreateBuyRandomMintTransaction = async (input: CreateBuyRandomMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation CreateBuyRandomMintTransaction($input: CreateBuyRandomMintTransactionInput!) {
+                createBuyRandomMintTransaction(input: $input) {
+                    hexTransaction
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const createBuyRandomMintTransactionPayload: CreateBuyRandomMintTransactionPayload = response?.createBuyRandomMintTransaction || {};
+    return createBuyRandomMintTransactionPayload;
+};
+
+export const mutateSubmitBuyRandomMintTransaction = async (input: SubmitBuyRandomMintTransactionInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation SubmitBuyRandomMintTransaction($input: SubmitBuyRandomMintTransactionInput!) {
+                submitBuyRandomMintTransaction(input: $input) {
+                    transactionId
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const submitBuyRandomMintTransactionPayload: SubmitBuyRandomMintTransactionPayload = response?.submitBuyRandomMintTransaction || {};
+    return submitBuyRandomMintTransactionPayload;
+};
+
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
 // Single Or Bulk NFT Minting Functions
 //---------------------------------------------------------------------------------------------------//
 export const mutateCreateBuyDirectMintTransaction = async (input: CreateBuyDirectMintTransactionInput) => {
@@ -274,5 +325,29 @@ export const mutateCancelBuyDirectBulkMintTransaction = async (input: CancelBuyD
 
     const cancelBuyDirectBulkMintTransaction: CancelBuyDirectMintTransactionPayload = response?.cancelBuyDirectBulkMintTransaction || {};
     return cancelBuyDirectBulkMintTransaction;
+};
+//---------------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------------//
+// NFT Start Functions
+//---------------------------------------------------------------------------------------------------//
+export const mutateStartMint = async (input: StartMintInput) => {
+    const parameters = { input: input };
+    graphQLClient.setHeaders(await getGraphQLHeaders());
+    const response = await graphQLClient.request(
+        gql`
+            mutation StartMint($input: StartMintInput!) {
+                startMint(input: $input) {
+                    nftProjectId
+                    error {
+                        message
+                    }
+                }
+            }
+        `,
+        parameters
+    );
+    const startMint: StartMintPayload = response?.startMint || {};
+    return startMint;
 };
 //---------------------------------------------------------------------------------------------------//

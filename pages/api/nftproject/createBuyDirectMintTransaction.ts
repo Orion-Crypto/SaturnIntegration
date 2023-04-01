@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { mutateCreateBuyDirectMintTransaction, mutateCreateSingleOrBulkMintTransaction } from '../../../src/api/GraphQL/NFTProject/mutation';
-import { CreateBuyDirectMintTransactionInput } from '../../../src/types/Models/NFTProjects/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
-import { CreateSingleOrBulkMintTransactionInput } from '../../../src/types/Models/NFTProjects/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
+import { CreateBuyDirectMintTransactionInput } from '../../../src/types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
+import { CreateSingleOrBulkMintTransactionInput } from '../../../src/types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     try {
