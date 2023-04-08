@@ -1,11 +1,4 @@
 import { gql } from 'graphql-request';
-import { CreateRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
-import { CreateRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionPayload';
-import { AddNFTProjectsPayload } from '../../../types/Models/NFTProject/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
-import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProject/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
-import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProject/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
-import { UpdateNFTProjectInput } from '../../../types/Models/NFTProject/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
-import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProject/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
 import { CancelBuyDirectMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionInput';
 import { CancelBuyDirectMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CancelBuyDirectMintTransaction/CancelBuyDirectMintTransactionPayload';
 import { CreateBuyDirectMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyDirectMint/CreateBuyDirectMintTransaction/CreateBuyDirectMintTransactionInput';
@@ -16,16 +9,23 @@ import { CreateBuyRandomMintTransactionInput } from '../../../types/Models/NFTPr
 import { CreateBuyRandomMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/CreateBuyRandomMintTransaction/CreateBuyRandomMintTransactionPayload';
 import { SubmitBuyRandomMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionInput';
 import { SubmitBuyRandomMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/BuyRandomMint/SubmitBuyRandomMintTransaction/SubmitBuyRandomMintTransactionPayload';
+import { CreateRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionInput';
+import { CreateRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/CreateRoyaltyMintTransaction/CreateRoyaltyMintTransactionPayload';
+import { AddNFTProjectsPayload } from '../../../types/Models/NFTProject/GraphQL/CRUDData/AddNFTProjects/AddNFTProjectsPayload';
+import { DeleteNFTProjectsInput } from '../../../types/Models/NFTProject/GraphQL/CRUDData/DeleteNFTProjects/DeleteNFTProjectsInput';
+import { DeleteNFTProjectsPayload } from '../../../types/Models/NFTProject/GraphQL/CRUDData/DeleteNFTProjects/DeleteNFTsPayload';
 import { StartMintInput } from '../../../types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintInput';
 import { StartMintPayload } from '../../../types/Models/NFTProject/GraphQL/CRUDData/StartMint/StartMintPayload';
+import { UpdateNFTProjectInput } from '../../../types/Models/NFTProject/GraphQL/CRUDData/UpdateNFTProject/UpdateNFTProjectInput';
+import { UpdateNFTProjectPayload } from '../../../types/Models/NFTProject/GraphQL/CRUDData/UpdateNFTProject/UpdateNFTProjectPayload';
 import { CancelSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionInput';
 import { CancelSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CancelSingleOrBulkMintTransaction/CancelSingleOrBulkMintTransactionPayload';
 import { CreateSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionInput';
 import { CreateSingleOrBulkBurnTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/CreateSingleOrBulkMintTransaction/CreateSingleOrBulkMintTransactionPayload';
 import { SubmitSingleOrBulkMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionInput';
 import { SubmitSingleOrBulkMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransaction/SubmitSingleOrBulkMintTransactionPayload';
-import { SubmitRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
-import { SubmitRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionPayload';
+import { SubmitRoyaltyMintTransactionInput } from '../../../types/Models/NFTProject/GraphQL/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionInput';
+import { SubmitRoyaltyMintTransactionPayload } from '../../../types/Models/NFTProject/GraphQL/SubmitRoyaltyMintTransaction/SubmitRoyaltyMintTransactionPayload';
 import { getGraphQLHeaders, graphQLClient } from '../../api';
 
 //---------------------------------------------------------------------------------------------------//
