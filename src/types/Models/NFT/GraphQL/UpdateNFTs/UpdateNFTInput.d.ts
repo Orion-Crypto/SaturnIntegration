@@ -1,5 +1,5 @@
 export interface UpdateNFTInput {
-    id: string;
+    nftId: string;
     assetName?: string;
     name?: string;
     files?: NFTFileData[];

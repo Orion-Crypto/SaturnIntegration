@@ -89,7 +89,7 @@ const mintDirectNFT = async () => {
             'minting-platform': 'https://saturnnft.io/',
         };
         const updateNFTInput: UpdateNFTInput = {
-            id: nft?.id,
+            nftId: nft?.id,
             assetName: 'SaturnAPITest1',
             name: 'Saturn API Test #1',
             files: [
@@ -137,7 +137,10 @@ const mintDirectNFT = async () => {
 
         // 7) Reconstruct and sign tx
         const reconstructedTx = Loader.Cardano.Transaction.from_bytes(fromHex(hexTransaction));
-        const transactionWitnessSet = Loader.Cardano.TransactionWitnessSet.new();
+        let transactionWitnessSet = reconstructedTx.witness_set();
+        if (!transactionWitnessSet) {
+            transactionWitnessSet = Loader.Cardano.TransactionWitnessSet.new();
+        }
         let txVKeyWitnesses = await signTx(reconstructedTx);
         txVKeyWitnesses = Loader.Cardano.TransactionWitnessSet.from_bytes(fromHex(txVKeyWitnesses));
         transactionWitnessSet.set_vkeys(txVKeyWitnesses.vkeys());
