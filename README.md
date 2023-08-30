@@ -66,11 +66,3 @@ If you need any help, feel free to reach out on [Twitter](https://twitter.com/Sa
 # Additional - Mercury Chat Integration
 
 In addition to the Saturn APIs, if your DAPP wants to have built in user chat, we have provided an example of how to implement that here as well =)
-
-```
-import MercuryChat from '@mercury-chat/react-chat'
-
-<div>
-    <MercuryChat />
-</div>
-```

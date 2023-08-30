@@ -1,4 +1,3 @@
-import { MercuryChat } from '@mercury-chat/react-chat';
 import { Header } from './Header';
 
 type LayoutProps = {
@@ -11,7 +10,6 @@ export const Layout = ({ children }: LayoutProps) => {
             <main>
                 <div>{children}</div>
             </main>
-            <MercuryChat />
         </>
     );
 };

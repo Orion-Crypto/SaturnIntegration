@@ -4,7 +4,7 @@ class Loader {
     async load() {
         if (this._wasm) return;
 
-        this._wasm = await import('./custom_modules/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib');
+        this._wasm = await import('@dcspark/cardano-multiplatform-lib-browser');
     }
 
     get Cardano() {

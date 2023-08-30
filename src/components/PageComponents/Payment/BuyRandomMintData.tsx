@@ -1,4 +1,3 @@
-import { CardanoWalletType } from '@mercury-chat/react-chat';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
