@@ -1,3 +1,8 @@
+[DEPRECATED]
+
+This repository is deprecated. For all new NFT Projects, please use the [Saturn V2 Integration Repository](https://github.com/Orion-Crypto/Saturn-V2-Integration)
+
+
 # Saturn API Documentation Example
 
 This repository is for the Cardano Saturn NFT documentation example. This example will go through a simple 1 - click multisig mint.
